@@ -15,7 +15,7 @@ namespace Common.Services.FileService
             string directory = Path.GetDirectoryName(path) ?? throw new AppException(ExceptionCode.Invalidate, "Đường dẫn không được để trống");
             if (!Directory.Exists(directory))
             {
-                throw new AppException(ExceptionCode.Notfound, "Không tìm thấy folder " + directory);
+                throw new AppException(ExceptionCode.Notfound, "Không tìm thấy file");
             }
             File.Delete(path);
         }
@@ -25,7 +25,7 @@ namespace Common.Services.FileService
             string directory = Path.GetDirectoryName(path) ?? throw new AppException(ExceptionCode.Invalidate, "Đường dẫn không được để trống");
             if (!Directory.Exists(directory))
             {
-                throw new AppException(ExceptionCode.Notfound, "Không tìm thấy folder " + directory);
+                throw new AppException(ExceptionCode.Notfound, "Không tìm thấy file");
             }
             return await File.ReadAllBytesAsync(path);
         }
@@ -35,7 +35,7 @@ namespace Common.Services.FileService
             string directory = Path.GetDirectoryName(path) ?? throw new AppException(ExceptionCode.Invalidate, "Đường dẫn không được để trống");
             if (!Directory.Exists(directory))
             {
-                throw new AppException(ExceptionCode.Notfound, "Không tìm thấy folder " + directory);
+                throw new AppException(ExceptionCode.Notfound, "Không tìm thấy file");
             }
             // Sử dụng FileStream để lưu file vào đường dẫn
             using (var stream = new FileStream(path, FileMode.Create))
