@@ -13,5 +13,6 @@ namespace Common.Constants
         public const string Role = "Role";
         public const string StaffId = "StaffId";
         public const string StaffName = "StaffName";
+        public const string Permission = "Permission";
     }
 }
