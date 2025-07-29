@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Common.Services.JwtTokenService
 {
     public interface IJwtTokenService
     {
-        public string GenerateToken<T>(T primeKey, string secretString);
-        public Guid? ValidateToken(string? token, string secretString);
+        public string GenerateToken(ClaimDto claimDto);
+        public ClaimDto? ValidateToken(string? token, string secretString);
     }
 }
