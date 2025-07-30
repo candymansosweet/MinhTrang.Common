@@ -9,7 +9,7 @@ namespace Common.Constants
     public static class ContextItems
     {
         public const string UserId = "AccountId";
-        public const string Username = "Username";
+        public const string Username = "AccountName";
         public const string Permissions = "Permissions";
     }
     public static class Claims
@@ -18,5 +18,4 @@ namespace Common.Constants
         public const string AccountName = "AccountName";
         public const string Permissions = "Permissions";
     }
-
 }

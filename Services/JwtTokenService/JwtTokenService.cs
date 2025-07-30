@@ -37,7 +37,7 @@ namespace Common.Services.JwtTokenService
             {
                 new Claim(Claims.AccountId, claimDto.AccountId), // user ID
                 new Claim(Claims.AccountName, claimDto.AccountName), // username
-                new Claim(Claims.Permissions, string.Join(",", claimDto)), // vai trò
+                new Claim(Claims.Permissions, string.Join(",", claimDto.Permissions)), // vai trò
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
