@@ -1,5 +1,6 @@
 ﻿using Common.Constants;
 using Common.Dtos;
+using Common.Services.TokenBlacklist;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -15,6 +16,13 @@ namespace Common.Services.JwtTokenService
 {
     public class JwtTokenService : IJwtTokenService
     {
+        private readonly ITokenBlacklist _tokenBlacklist;
+
+        public JwtTokenService(ITokenBlacklist tokenBlacklist)
+        {
+            _tokenBlacklist = tokenBlacklist;
+        }
+
         // HEADER.PAYLOAD.SIGNATURE
         // HEADER: chứa thông tin về thuật toán mã hóa và loại token.
         // PAYLOAD: chứa các thông tin (claims) về người dùng và các dữ liệu khác.
@@ -82,6 +90,7 @@ namespace Common.Services.JwtTokenService
                     jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
                 {
                     claimDto = new ClaimDto();
+                    claimDto.Jti = principal.FindFirst(Claims.Jti)?.Value ?? "";
                     claimDto.AccountId = principal.FindFirst(Claims.AccountId)?.Value ?? "";
                     claimDto.AccountName = principal.FindFirst(Claims.AccountName)?.Value ?? "";
                     claimDto.Permissions = principal.FindFirst(Claims.Permissions)?.Value?.Split(',').ToList() ?? new List<string>();
@@ -91,6 +100,17 @@ namespace Common.Services.JwtTokenService
             catch
             {
                 return null;
+            }
+        }
+        public void RevokeToken(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token);
+            var jti = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti)?.Value;
+
+            if (!string.IsNullOrEmpty(jti))
+            {
+                _tokenBlacklist.Revoke(jti);
             }
         }
     }

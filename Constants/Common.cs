@@ -11,9 +11,11 @@ namespace Common.Constants
         public const string UserId = "AccountId";
         public const string Username = "AccountName";
         public const string Permissions = "Permissions";
+        public const string Jti = "jti";
     }
     public static class Claims
     {
+        public const string Jti = "jti";
         public const string AccountId = "AccountId";
         public const string AccountName = "AccountName";
         public const string Permissions = "Permissions";

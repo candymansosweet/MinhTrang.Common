@@ -11,5 +11,6 @@ namespace Common.Services.JwtTokenService
     {
         public string GenerateToken(ClaimDto claimDto);
         public ClaimDto? ValidateToken(string? token, string secretString);
+        public void RevokeToken(string token); // Xoá token khỏi blacklist
     }
 }
