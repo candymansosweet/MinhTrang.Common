@@ -11,7 +11,7 @@ namespace Common.Constants
         public enum ROLE
         {
             Admin = 0,
-            Staff = 5
+            User = 5
         }
     }
 }

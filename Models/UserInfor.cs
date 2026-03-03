@@ -9,10 +9,10 @@ namespace Common.Models
 {
     public class UserInfor
     {
-        public Guid UserId { get; set; }
-        public string Username { get; set; }
+        public Guid AccountId { get; set; }
+        public string AccountName { get; set; }
         public RoleValue.ROLE Role { get; set; }
-        public Guid StaffId { get; set; }
-        public string StaffName { get; set; }
+        public Guid UserId { get; set; }
+        public string UserName { get; set; }
     }
 }

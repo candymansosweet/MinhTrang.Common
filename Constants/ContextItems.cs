@@ -11,7 +11,7 @@ namespace Common.Constants
         public const string UserId = "UserId";
         public const string Username = "Username";
         public const string Role = "Role";
-        public const string StaffId = "StaffId";
-        public const string StaffName = "StaffName";
+        public const string AccountId = "AccountId";
+        public const string AccountName = "AccountName";
     }
 }
